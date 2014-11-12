@@ -15,6 +15,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import com.stacksync.syncservice.exceptions.dao.DAOException;
 import com.stacksync.syncservice.rmiserveri.*;
 import com.stacksync.syncservice.rmiserver.*;

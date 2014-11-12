@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.stacksync.syncservice.rmiclient.*;
 import com.stacksync.syncservice.rmiserveri.*;
+import com.stacksync.syncservice.rmiclient.*;
 
-public class DeviceDAORMISer extends UnicastRemoteObject implements
-		DeviceDAORMIIfc {
+public class DeviceDAORMISer extends UnicastRemoteObject implements	DeviceDAORMIIfc {
 
+	private static final long serialVersionUID = -5296991587048955737L;
 	List<DeviceRMI> list;
 
 	public DeviceDAORMISer() throws RemoteException {
