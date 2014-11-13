@@ -3,8 +3,6 @@ package com.stacksync.syncservice.rmiserver;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
-import com.stacksync.syncservice.rmiserveri.WorkspaceDAORMIIfc;
-
 public class MainRMISer {
 	public static void main(String args[]) {
 		try {

@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.stacksync.syncservice.rmiclient.*;
-import com.stacksync.syncservice.rmiserveri.*;
+import com.stacksync.syncservice.rmiclient.ItemMetadataRMI;
+import com.stacksync.syncservice.rmiclient.ItemRMI;
+import com.stacksync.syncservice.rmiserveri.ItemDAORMIIfc;
 
 public class ItemDAORMISer extends UnicastRemoteObject implements ItemDAORMIIfc {
+
+	private static final long serialVersionUID = 6060476311240054829L;
 
 	List<ItemRMI> list;
 
@@ -17,7 +20,6 @@ public class ItemDAORMISer extends UnicastRemoteObject implements ItemDAORMIIfc 
 		list = new ArrayList<ItemRMI>();
 	}
 
-	@Override
 	public ItemRMI findById(Long item1ID) throws RemoteException {
 		ItemRMI item = null;
 
@@ -30,7 +32,6 @@ public class ItemDAORMISer extends UnicastRemoteObject implements ItemDAORMIIfc 
 		return item;
 	}
 
-	@Override
 	public void add(ItemRMI item) throws RemoteException {
 		if (!item.isValid()) {
 			throw new IllegalArgumentException("Item attributes not set");
@@ -42,15 +43,6 @@ public class ItemDAORMISer extends UnicastRemoteObject implements ItemDAORMIIfc 
 			System.out.println("EXISTING ITEM ID");
 	}
 
-	@Override
-	public void put(ItemRMI item) throws RemoteException {
-		if (findById(item.getId()) == null) {
-			add(item);
-		} else
-			update(item);
-	}
-
-	@Override
 	public void update(ItemRMI item) throws RemoteException {
 		if (item.getId() == null || !item.isValid()) {
 			throw new IllegalArgumentException("Item attributes not set");
@@ -70,10 +62,14 @@ public class ItemDAORMISer extends UnicastRemoteObject implements ItemDAORMIIfc 
 			System.out.println("ITEM ID DOESN'T EXIST");
 	}
 
-	@Override
-	public void delete(Long id) throws RemoteException {
-		// TODO Auto-generated method stub
+	public void put(ItemRMI item) throws RemoteException {
+		if (findById(item.getId()) == null) {
+			add(item);
+		} else
+			update(item);
+	}
 
+	public void delete(Long id) throws RemoteException {
 		if (findById(id) == null) {
 			list.remove(findById(id));
 			System.out.println("REMOVED");
@@ -81,65 +77,41 @@ public class ItemDAORMISer extends UnicastRemoteObject implements ItemDAORMIIfc 
 			System.out.println("ITEM ID DOESN'T EXIST");
 	}
 
-	@Override
-	public List<ItemMetadataRMI> getItemsByWorkspaceId(UUID workspaceId)
-			throws RemoteException {
-
+	public List<ItemMetadataRMI> getItemsByWorkspaceId(UUID workspaceId) throws RemoteException {
 		List<ItemMetadataRMI> items = null;
 
 		return items;
 	}
 
-	@Override
 	public List<ItemMetadataRMI> getItemsById(Long id) throws RemoteException {
 		List<ItemMetadataRMI> list = new ArrayList<ItemMetadataRMI>();
 
 		return list;
 	}
 
-	@Override
-	public ItemMetadataRMI findById(Long id, Boolean includeList, Long version,
-			Boolean includeDeleted, Boolean includeChunks)
-			throws RemoteException {
+	public ItemMetadataRMI findById(Long id, Boolean includeList, Long version, Boolean includeDeleted,
+			Boolean includeChunks) throws RemoteException {
 		ItemMetadataRMI item = null;
 
 		return item;
 	}
 
-	@Override
-	public ItemMetadataRMI findByUserId(UUID userId, Boolean includeDeleted)
-			throws RemoteException {
-		// TODO: check include_deleted
+	public ItemMetadataRMI findByUserId(UUID serverUserId, Boolean includeDeleted) throws RemoteException {
 		ItemMetadataRMI rootMetadata = new ItemMetadataRMI();
 
 		return rootMetadata;
 	}
 
-	@Override
-	public ItemMetadataRMI findItemVersionsById(Long fileId)
-			throws RemoteException {
-		// TODO: check include_deleted
+	public ItemMetadataRMI findItemVersionsById(Long id) throws RemoteException {
 		ItemMetadataRMI rootMetadata = new ItemMetadataRMI();
 
 		return rootMetadata;
 	}
 
-	@Override
-	public List<String> migrateItem(Long itemId, UUID workspaceId)
-			throws RemoteException {
-
+	public List<String> migrateItem(Long itemId, UUID workspaceId) throws RemoteException {
 		List<String> chunksToMigrate = null;
 
 		return chunksToMigrate;
-
-	}
-
-	private List<String> getChunksToMigrate(Long itemId) throws RemoteException {
-
-		List<String> chunksList = null;
-
-		return chunksList;
-
 	}
 
 }

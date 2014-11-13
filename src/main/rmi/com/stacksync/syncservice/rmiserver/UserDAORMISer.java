@@ -11,13 +11,14 @@ import com.stacksync.syncservice.rmiserveri.*;
 
 public class UserDAORMISer extends UnicastRemoteObject implements UserDAORMIIfc {
 
+	private static final long serialVersionUID = 1448554234853735694L;
+	
 	List<UserRMI> list;
 
 	public UserDAORMISer() throws RemoteException {
 		list = new ArrayList<UserRMI>();
 	}
 
-	@Override
 	public UserRMI findById(UUID userID) {
 		UserRMI user = null;
 
@@ -30,7 +31,6 @@ public class UserDAORMISer extends UnicastRemoteObject implements UserDAORMIIfc 
 		return user;
 	}
 
-	@Override
 	public UserRMI getByEmail(String email) {
 		UserRMI user = null;
 
@@ -43,13 +43,11 @@ public class UserDAORMISer extends UnicastRemoteObject implements UserDAORMIIfc 
 		return user;
 	}
 
-	@Override
 	public List<UserRMI> findAll() {
 
 		return list;
 	}
 
-	@Override
 	public void add(UserRMI user) {
 		if (!user.isValid()) {
 			throw new IllegalArgumentException("User attributes not set");
@@ -61,7 +59,6 @@ public class UserDAORMISer extends UnicastRemoteObject implements UserDAORMIIfc 
 			System.out.println("EXISTING USER ID");
 	}
 
-	@Override
 	public void update(UserRMI user) {
 		if (user.getId() == null || !user.isValid()) {
 			throw new IllegalArgumentException("User attributes not set");
@@ -74,7 +71,6 @@ public class UserDAORMISer extends UnicastRemoteObject implements UserDAORMIIfc 
 			System.out.println("USER ID DOESN'T EXIST");
 	}
 
-	@Override
 	public void delete(UUID userID) {
 		if (findById(userID) != null) {
 			list.remove(findById(userID));
@@ -83,7 +79,6 @@ public class UserDAORMISer extends UnicastRemoteObject implements UserDAORMIIfc 
 			System.out.println("USER ID DOESN'T EXIST");
 	}
 
-	@Override
 	public List<UserRMI> findByItemId(Long itemID) {
 		ArrayList<UserRMI> users = new ArrayList<UserRMI>();
 
