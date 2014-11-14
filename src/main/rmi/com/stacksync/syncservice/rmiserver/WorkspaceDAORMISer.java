@@ -22,6 +22,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 		listuw = new ArrayList<UserWorkspaceRMI>();
 	}
 
+	@Override
 	public WorkspaceRMI getById(UUID workspaceID) throws RemoteException {
 		WorkspaceRMI workspace = null;
 
@@ -38,6 +39,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 		return workspace;
 	}
 
+	@Override
 	public List<WorkspaceRMI> getByUserId(UUID userID) throws RemoteException {
 
 		List<WorkspaceRMI> workspaces = new ArrayList<WorkspaceRMI>();
@@ -57,6 +59,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 		return workspaces;
 	}
 
+	@Override
 	public WorkspaceRMI getDefaultWorkspaceByUserId(UUID userID)
 			throws RemoteException {
 		WorkspaceRMI workspace = null;
@@ -74,6 +77,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 		return workspace;
 	}
 
+	@Override
 	public void add(WorkspaceRMI workspace) throws RemoteException {
 		if (!workspace.isValid()) {
 			throw new IllegalArgumentException("Workspace attributes not set");
@@ -84,6 +88,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 			System.out.println("EXISTING WORKSPACE ID");
 	}
 
+	@Override
 	public void update(UserRMI user, WorkspaceRMI workspace)
 			throws RemoteException {
 		if (workspace.getId() == null || user.getId() == null) {
@@ -98,6 +103,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 			System.out.println("WORKSPACE DOESN'T EXIST");
 	}
 
+	@Override
 	public void delete(UUID workspaceID) throws RemoteException {
 		if (getById(workspaceID) != null) {
 			list.remove(getById(workspaceID));
@@ -106,6 +112,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 			System.out.println("WORKSPACE DOESN'T EXIST");
 	}
 
+	@Override
 	public void addUser(UserRMI user, WorkspaceRMI workspace)
 			throws RemoteException {
 		boolean exist = false;
@@ -129,6 +136,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 			System.out.println("USER DOES ALREDY EXIST");
 	}
 
+	@Override
 	public void deleteUser(UserRMI user, WorkspaceRMI workspace)
 			throws RemoteException {
 		boolean exist = false;
@@ -152,6 +160,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 			System.out.println("USER DOESN'T EXIST");
 	}
 
+	@Override
 	public WorkspaceRMI getByItemId(Long itemID) throws RemoteException {
 
 		WorkspaceRMI workspace = null;
@@ -171,6 +180,7 @@ public class WorkspaceDAORMISer extends UnicastRemoteObject implements
 		return workspace;
 	}
 
+	@Override
 	public List<UserWorkspaceRMI> getMembersById(UUID workspaceID)
 			throws RemoteException {
 		List<UserWorkspaceRMI> users = new ArrayList<UserWorkspaceRMI>();

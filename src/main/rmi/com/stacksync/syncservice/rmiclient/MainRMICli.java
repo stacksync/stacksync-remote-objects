@@ -13,13 +13,11 @@ public class MainRMICli {
 			// Naming.lookup("rmi://0/DeviceServer");
 			// ItemDAORMIIfc addItemServer = (ItemDAORMIIfc)
 			// Naming.lookup("rmi://0/ItemServer");
-			UserDAORMIIfc addUserServer = (UserDAORMIIfc) Naming
-					.lookup("rmi://0/UserServer");
+			UserDAORMIIfc addUserServer = (UserDAORMIIfc) Naming.lookup("rmi://0/UserServer");
 			// ItemVersionDAORMIIfc addItemVersionServer =
 			// (ItemVersionDAORMIIfc)
 			// Naming.lookup("rmi://0/ItemVersionServer");
-			WorkspaceDAORMIIfc addWorkspaceServer = (WorkspaceDAORMIIfc) Naming
-					.lookup("rmi://0/WorkspaceServer");
+			WorkspaceDAORMIIfc addWorkspaceServer = (WorkspaceDAORMIIfc) Naming.lookup("rmi://0/WorkspaceServer");
 
 			UserRMI user = new UserRMI();
 			user.setName("Laura");
@@ -50,8 +48,7 @@ public class MainRMICli {
 
 			addWorkspaceServer.add(workspace);
 
-			System.out.println(addWorkspaceServer.getById(workspace.getId())
-					.toString());
+			System.out.println(addWorkspaceServer.getById(workspace.getId()).toString());
 			System.out.println(workspace.toString());
 
 		} catch (Exception e) {

@@ -18,7 +18,8 @@ public class DeviceDAORMISer extends UnicastRemoteObject implements DeviceDAORMI
 	protected DeviceDAORMISer() throws RemoteException {
 		list = new ArrayList<DeviceRMI>();
 	}
-
+	
+	@Override
 	public DeviceRMI get(UUID deviceID) throws RemoteException {
 
 		DeviceRMI device = null;
@@ -32,6 +33,7 @@ public class DeviceDAORMISer extends UnicastRemoteObject implements DeviceDAORMI
 		return device;
 	}
 
+	@Override
 	public void add(DeviceRMI device) throws RemoteException {
 		if (!device.isValid()) {
 			throw new IllegalArgumentException("Device attributes not set");
@@ -52,6 +54,7 @@ public class DeviceDAORMISer extends UnicastRemoteObject implements DeviceDAORMI
 			System.out.println("EXISTING DEVICE ID");
 	}
 
+	@Override
 	public void update(DeviceRMI device) throws RemoteException {
 		if (device.getId() == null || !device.isValid()) {
 			throw new IllegalArgumentException("Device attributes not set");
@@ -75,6 +78,7 @@ public class DeviceDAORMISer extends UnicastRemoteObject implements DeviceDAORMI
 			System.out.println("DEVICE ID DOESN'T EXIST");
 	}
 
+	@Override
 	public void delete(UUID deviceID) throws RemoteException {
 		boolean exist = false;
 		DeviceRMI d1 = null;
